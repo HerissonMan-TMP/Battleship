@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bataille Navale - Jouer</title>
+
+        <link rel="stylesheet" href="../css/layout.css">
+
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="../js/grille.js" defer></script>
+    </head>
+
+    <body>
+        <header class="header">
+            <h1 class="title">
+                Bataille Navale
+            </h1>
+            <div id="liens">
+                <a href="../index.html">Accueil</a>
+                <a href="grille.html">Jouer</a>
+                <a href="formulaire.html">Formulaire</a>
+            </div>
+        </header>
+        
+        <main>
+            <div id="battleship" class="flex justify-around md:gap-10 md:flex-wrap">
+            </div>
+    
+            <div class="mt-10 flex flex-col items-center">
+                <div id="battleship-messages" class="hidden bg-gray-900 p-4 rounded-md">
+                    <div id="battleship-next-ship-information" class="hidden text-center text-white">
+                        Placez:
+                        <span class="font-bold text-blue-500">
+                            <span id="battleship-next-ship-name">Porte-avions</span>
+                            <span>(<span id="battleship-next-ship-size">5</span> cases)</span>
+                        </span>
+                    </div>
+        
+                    <div id="battleship-error-message" class="hidden p-3 text-center font-semibold text-red-500">
+                    </div>
+        
+                    <div id="battleship-start-button" class="hidden text-center">
+                        <button class="bg-blue-500 p-3 font-semibold text-white rounded-md">Start</button>
+                    </div>
+        
+                    <div id="battleship-ship-hit-message" class="hidden font-semibold text-blue-500 text-center">
+                    </div>
+
+                    <div id="battleship-water-hit-message" class="hidden font-semibold text-blue-500 text-center">
+                    </div>
+
+                    <div id="battleship-ship-sunk-message" class="hidden font-semibold text-blue-500 text-center">
+                    </div>
+
+                    <div id="battleship-win-message" class="hidden font-semibold text-blue-500 text-center">
+                    </div>
+
+                    <div id="battleship-phase" class="hidden p-3 font-semibold text-blue-500 text-center">
+                    </div>
+        
+                    <div id="battleship-restart-button" class="hidden">
+                        <button class="bg-blue-500 mt-3 p-3 font-semibold text-white rounded-md">Restart a new game</button>
+                    </div>
+                </div>
+
+                <div id="battleship-map-size-choice" class="mt-4 bg-gray-900 p-4 rounded-md text-white text-center">
+                    <div>
+                        <input type="radio" id="battleship-map-size-10x10" name="battleship-map-size-input" value="10" checked>
+                        <label for="battleship-map-size-10x10">10x10</label>
+                    </div>
+
+                    <div>
+                        <input type="radio" id="battleship-map-size-15x15" name="battleship-map-size-input" value="15">
+                        <label for="battleship-map-size-15x15">15x15</label>
+                    </div>
+
+                    <div>
+                        <button class="bg-blue-500 mt-3 p-3 font-semibold text-white rounded-md">Generate</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Bataille Navale || Andres Delrive Coten Barbaud Aillet</a>
+            </p>
+        </footer>
+    </body>
+</html>

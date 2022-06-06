@@ -1,0 +1,62 @@
+body {
+  margin: 0;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background-image: url(../IMG/mer.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.header {
+  overflow: auto;
+  background-color: #111827;
+  color: white;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+}
+
+.title {
+  position: relative;
+  text-align: center;
+  font-size: 30px;
+}
+
+.header #liens {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.header #liens > a {
+  color: unset;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+}
+
+.header #liens > a:hover {
+  border-bottom: 3px solid #3b82f6;
+}
+
+
+main {
+  margin-top: 150px;
+  margin-bottom: 150px;
+}
+
+footer {
+  background-color: #111827;
+  display: block;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+footer p {
+  color: white;
+  text-align: center;
+}
+
+footer p a {
+  color: inherit;
+  font-weight: 700;
+}
