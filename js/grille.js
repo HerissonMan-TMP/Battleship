@@ -746,7 +746,7 @@ class Battleship
     
             //Check if cell to the top is in the map borders
             let previousRow = parseInt(cell.dataset.row) - 1
-            if (previousRow >= 0) {
+            if (previousRow >= 1) {
               let previousCell = this.cell(PLAYER_GRID, cell.dataset.col, parseInt(previousRow))
     
               if (previousCell.dataset.shipId == cell.dataset.shipId && this.isHit(previousCell)) {
@@ -765,8 +765,8 @@ class Battleship
             }
           }
     
-          //WAIT: Choose a random cell with a hit ship that is not sunk, and with at least one free cell around each
-    
+          console.log(cellPossibilities)
+
           //If no possibilities, fire in water
     
           //Check if some possibilities have been found
@@ -835,7 +835,7 @@ class Battleship
     
             //Check if cell to the top is in the map borders
             let previousRow = parseInt(cellToCheck.dataset.row) - 1
-            if (previousRow >= 0) {
+            if (previousRow >= 1) {
               let previousCell = this.cell(PLAYER_GRID, cellToCheck.dataset.col, parseInt(previousRow))
     
               cellPossibilitiesAroundCellToCheck.push(previousCell)
@@ -880,10 +880,33 @@ class Battleship
     
               //Check if we found any cells to fire
               if (cellsToFire.length === 0) {
-                //If not, we remove the cellToCheck from the cellPossibilities, and we will then go back at the start of the while loop to check the other ones
-                cellPossibilities = cellPossibilities.filter(cellPossibility => {
-                  return cellPossibility.dataset.col === cellToCheck.dataset.col && cellPossibility.dataset.row === cellToCheck.dataset.row
-                })
+                //If not, we try in the other direction
+                if (direction === 'vertical') {
+                  for (let i = 0; i < cellsWithoutHit.length; i++) {
+                    //We check the cell at the right and the cell at the left of the cellToCheck. If one of them has not been hit yet, we set this cell as an eventual cell to fire.
+                    if (parseInt(cellsWithoutHit[i].dataset.row) === parseInt(cellToCheck.dataset.row) && (cellsWithoutHit[i].dataset.col === String.fromCharCode(cellToCheck.dataset.col.charCodeAt(0) - 1) || cellsWithoutHit[i].dataset.col === String.fromCharCode(cellToCheck.dataset.col.charCodeAt(0) + 1))) {
+                      cellsToFire.push(cellsWithoutHit[i])
+                    }
+                  }
+                } else if (direction === 'horizontal') {
+                  for (let i = 0; i < cellsWithoutHit.length; i++) {
+                    //We check the cell at the top and the cell at the bottom of the cellToCheck. If one of them has not been hit yet, we set this cell as an eventual cell to fire.
+                    if (cellsWithoutHit[i].dataset.col === cellToCheck.dataset.col && (parseInt(cellsWithoutHit[i].dataset.row) === parseInt(cellToCheck.dataset.row) - 1 || parseInt(cellsWithoutHit[i].dataset.row) === parseInt(cellToCheck.dataset.row) + 1)) {
+                      cellsToFire.push(cellsWithoutHit[i])
+                    }
+                  }
+                }
+
+                //Last attempt to check if there are any cells to fire after having tried the other direction
+                if (cellsToFire.length === 0) {
+                  //If not, we remove the cellToCheck from the cellPossibilities, and we will then go back at the start of the while loop to check the other ones
+                  cellPossibilities = cellPossibilities.filter(cellPossibility => {
+                    return cellPossibility.dataset.col === cellToCheck.dataset.col && cellPossibility.dataset.row === cellToCheck.dataset.row
+                  })
+                } else {
+                  //If yes, we choose a random cell to fire
+                  cellToFire = cellsToFire[Math.floor(Math.random() * cellsToFire.length)]
+                }
               } else {
                 //If yes, we choose a random cell to fire
                 cellToFire = cellsToFire[Math.floor(Math.random() * cellsToFire.length)]
