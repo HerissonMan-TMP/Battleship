@@ -16,7 +16,6 @@ function Arrows() {
     else if (cpt == 2) {
         Btarrow.querySelector('i').style.transform = "rotate(0deg)";
         Bt2.style.visibility = "hidden";
-        Bt2.style.transitionDelay = "0s";
         Es.style.visibility = "hidden";
         image.style.visibility = "hidden";
         cpt = 0
